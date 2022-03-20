@@ -11,8 +11,7 @@ public class Checkers {
 	 *     Mensaje que se incluirá en la excepción elevada
 	 * @param condicion
 	 *     Expresión booleana que ha de cumplirse para que no se eleve una excepción
-	 * @throws IllegalArgumentException si no se cumple la condición
-	 *  
+	 * @throws IllegalArgumentException si no se cumple la condición 
 	 */
 	public static void check(String textoRestriccion, Boolean condicion) {
 		if (!condicion) {
@@ -25,6 +24,7 @@ public class Checkers {
 		}
 	}
 
+	
 	/**
 	 * @param parametros Lista de parámetros para los que se quiere realizar una comprobación de nulidad.
 	 * @throws IllegalArgumentException si alguno de los parámetros es nulo.
