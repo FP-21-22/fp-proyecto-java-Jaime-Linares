@@ -2,6 +2,7 @@ package fp.clinico;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 import fp.utiles.Checkers;
 
@@ -39,9 +40,11 @@ public record Persona(String nombre, String apellidos, String dni, LocalDate fec
 		String nombre = partes[0].trim();
 		String apellidos = partes[1].trim();
 		String dni = partes[2].trim();
-		//Checkers.check("La fecha de nacimiento debe ser anterior a la fecha actual.", fechaNacimiento.isBefore(LocalDate.now()));
+		String fechaNac = partes[3].trim();
+		LocalDate fechaNacimiento = LocalDate.parse(fechaNac, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		Checkers.check("La fecha de nacimiento debe ser anterior a la fecha actual.", fechaNacimiento.isBefore(LocalDate.now()));
 		Checkers.check("El dni no es correcto, debe contener 8 números y una letra (en mayuscula).", verificaDni(dni));
-		return new Persona(nombre, apellidos, dni, LocalDate.of(2003, 5, 29));
+		return new Persona(nombre, apellidos, dni, fechaNacimiento);
 	}
 			
 	
