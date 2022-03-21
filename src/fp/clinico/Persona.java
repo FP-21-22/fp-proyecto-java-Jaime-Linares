@@ -58,9 +58,9 @@ public record Persona(String nombre, String apellidos, String dni, LocalDate fec
 		
 	
 	// Métodos adicionales
-	// a) Reperesentanción como cadena: viene por defecto
+	// a) Reperesentanción como cadena: el que viene por defecto
 	
-	// b) Criterio de igualdad: viene por defecto
+	// b) Criterio de igualdad: el que viene por defecto
 	
 	// c) Criterio de ordenación
 	@Override

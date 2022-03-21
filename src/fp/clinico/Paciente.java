@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import fp.utiles.Checkers;
 
 public record Paciente(Persona persona, String codigoIngreso, LocalDateTime fechaHoraIngreso) {
+	
 	// Constructores por defecto + restricciones
 	public Paciente{
 		Checkers.check("La fecha y hora de ingreso debe ser anterior o igual a la fecha actual.", 
@@ -29,7 +30,7 @@ public record Paciente(Persona persona, String codigoIngreso, LocalDateTime fech
 	}
 	
 
-	// Métodos de las propiedades (derivados)
+	// Métodos de las propiedades (derivadas)
 	public LocalDate fechaIngreso() {
 		return this.fechaHoraIngreso.toLocalDate();
 	}
@@ -41,9 +42,9 @@ public record Paciente(Persona persona, String codigoIngreso, LocalDateTime fech
 	
 	
 	// Métodos adicionales
-	// a) Representacion como cadena: viene por defecto
+	// a) Representacion como cadena: el que viene por defecto
 	
-	// b) Criterio de igualdad: viene por defecto
+	// b) Criterio de igualdad: el que viene por defecto
 	
 	
 }
