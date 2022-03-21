@@ -31,11 +31,21 @@ public record PacienteEstudio(String id, String genero, Double edad, Boolean hip
 		String id = partes[0];
 		String genero = partes[1];
 		String edad = partes[2];
+		Double edadParseada = Double.parseDouble(edad);
 		String hipertension = partes[3];
+		Boolean hipertensionParseada = Boolean.parseBoolean(hipertension);
 		String enfermedadCorazon = partes[4];
+		Boolean enfermedadCorazonParseada = Boolean.parseBoolean(enfermedadCorazon);
 		String tipoDeResidencia = partes[5];
+		TipoResidencia tipoDeResidenciaParseada = TipoResidencia.valueOf(tipoDeResidencia);
 		String nivelMedioGlucosa = partes[6];
-		return null;
+		Double nivelMedioGlucosaParseada = Double.parseDouble(nivelMedioGlucosa);
+		Checkers.check("La edad tiene que ser mayor o igual que cero y menor o igual que 130.", 
+				edadParseada >= 0 && edadParseada <= 130);
+		Checkers.check("El nivel medio de glucosa tiene que ser mayor o igual que cero.",
+				nivelMedioGlucosaParseada >= 0);
+		return new PacienteEstudio (id, genero, edadParseada, hipertensionParseada, 
+				enfermedadCorazonParseada, tipoDeResidenciaParseada, nivelMedioGlucosaParseada);
 	}	
 	
 	
