@@ -1,3 +1,4 @@
+
 package fp.clinico;
 
 import java.time.LocalDate;
@@ -14,7 +15,7 @@ public record Persona(String nombre, String apellidos, String dni, LocalDate fec
 		Checkers.check("El dni no es correcto, debe contener 8 números y una letra (en mayuscula).", verificaDni(dni));
 	}
 	
-	// Funcion auxiliar para comprar que el dni es correcto
+	// Funcion auxiliar para comparar que el dni es correcto
 	private static Boolean verificaDni(String dni) {
 		Boolean res = true;
 		if(dni.length() != 9) {

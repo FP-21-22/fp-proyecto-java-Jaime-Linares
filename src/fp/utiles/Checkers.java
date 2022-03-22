@@ -4,6 +4,7 @@ package fp.utiles;
  * @author reinaqu
  * Clase de utilidad con métodos para facilitar la gestión de restricciones.
  */
+
 public class Checkers {
 
 	/**
@@ -40,4 +41,6 @@ public class Checkers {
 			}
 		}
 	}
+	
+	
 }
