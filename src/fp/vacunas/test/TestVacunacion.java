@@ -1,6 +1,8 @@
-package fp.vacunas;
+package fp.vacunas.test;
 
 import java.time.LocalDate;
+
+import fp.vacunas.Vacunacion;
 
 public class TestVacunacion {
 

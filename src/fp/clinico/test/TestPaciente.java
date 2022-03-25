@@ -1,7 +1,10 @@
-package fp.clinico;
+package fp.clinico.test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import fp.clinico.Paciente;
+import fp.clinico.Persona;
 
 public class TestPaciente {
 

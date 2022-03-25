@@ -80,7 +80,8 @@ public class Medicamento implements Comparable<Medicamento> {
 	// a) Representación como cadena
 	@Override
 	public String toString() {
-		return "Medicamento [nombreMedicamento=" + nombreMedicamento + ", farmaceutica=" + farmaceutica + "]";
+		return "Medicamento [nombreMedicamento=" + this.nombreMedicamento + ", farmaceutica=" + this.farmaceutica + "]";
+		
 	}
 	
 	// b) Criterio de igualdad

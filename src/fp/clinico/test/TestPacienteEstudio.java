@@ -1,4 +1,7 @@
-package fp.clinico;
+package fp.clinico.test;
+
+import fp.clinico.PacienteEstudio;
+import fp.clinico.TipoResidencia;
 
 public class TestPacienteEstudio {
 
