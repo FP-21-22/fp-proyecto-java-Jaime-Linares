@@ -44,3 +44,4 @@ public record Paciente(Persona persona, String codigoIngreso, LocalDateTime fech
 	
 	
 }
+

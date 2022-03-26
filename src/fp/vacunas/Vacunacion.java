@@ -57,3 +57,4 @@ public record Vacunacion(LocalDate fecha, String comunidad, Integer pfizer, Inte
 	
 	
 }
+

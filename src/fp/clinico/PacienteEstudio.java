@@ -67,3 +67,4 @@ public record PacienteEstudio(String id, String genero, Double edad, Boolean hip
 		
 	
 }
+
