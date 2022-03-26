@@ -1,5 +1,6 @@
-# Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso  \<XX\>/\<YY\>)
-Autor/a: \<nombre del autor\>   uvus:\<uvus del autor\>
+# Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso  2021/2022)
+Autor: Jaime Linares Barrera       
+uvus: jailinbar
 
 Aquí debes añadir la descripción del dataset y un enunciado del dominio del proyecto.
 
@@ -7,13 +8,17 @@ Aquí debes añadir la descripción del dataset y un enunciado del dominio del p
 ## Estructura de las carpetas del proyecto
 
 * **/src**: Contiene los diferentes archivos que forman parte del proyecto. Debe estar estructurado en los siguentes paquetes
-  * **fp.\<dominio\>**: Paquete que contiene los tipos del proyecto.
-  * **fp.\<dominio\>.test**: Paquete que contiene las clases de test del proyecto.
+  * **fp.clinico**: Paquete que contiene alguno de los tipos del proyecto.
+  * **fp.clinico.test**: Paquete que contiene las clases de test de ciertos tipos del proyecto.
+  * **fp.farmaceutico**: Paquete que contiene alguno de los tipos del proyecto.
+  * **fp.farmaceutico.test**: Paquete que contiene las clases de test de ciertos tipos del proyecto.
+  * **fp.vacunas**: Paquete que contiene alguno de los tipos del proyecto.
+  * **fp.vacunas.test**: Paquete que contiene las clases de test de ciertos tipos del proyecto.
   * **fp.common**: Paquete que contiene los tipos auxiliares del proyecto
   * **fp.utiles**:  Paquete que contiene las clases de utilidad. 
 * **/data**: Contiene el dataset o datasets del proyecto
     * **\<dataset1.csv\>**: Añade una descripción genérica del dataset.
-    * **\<dataset2.csv\>**: Añade una descripción del resto de datasets que puedas tener.
+* **/doc**: Contiene la documentación y enunciado del proyecto.
     
 ## Estructura del *dataset*
 
@@ -27,9 +32,9 @@ El dataset está compuesto por \<N\> columnas, con la siguiente descripción:
 
 ## Tipos implementados
 
-Describe aquí los tipos que usas en tu proyecto.
+En el proyecto hemos implementado los tipos Persona, Paciente, PacienteEstudio, Vacunacion y Medicamentos.
 
-### Tipo Base
+### Tipos Base
 Descripción breve del tipo base.
 
 **Propiedades**:
