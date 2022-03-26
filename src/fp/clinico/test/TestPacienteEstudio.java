@@ -6,6 +6,7 @@ import fp.clinico.TipoResidencia;
 public class TestPacienteEstudio {
 
 	public static void main(String[] args) {
+		System.out.println("*** TEST TIPO PACIENTE ESTUDIO ***");
 		PacienteEstudio pe1 = new PacienteEstudio("6306", "Male", 80., true, false, TipoResidencia.URBANA, 83.84);
 		System.out.println(pe1.toString());
 		System.out.println("id: " + pe1.id());

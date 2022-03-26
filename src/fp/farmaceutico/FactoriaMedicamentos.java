@@ -8,13 +8,13 @@ public class FactoriaMedicamentos {
 	// Método static: parseaMedicamento
 	public static Medicamento parseaMedicamento(String cadena) {
 		String[] partes = cadena.split(",");
-		String nombreMedicamento = partes[0];
-		TipoMedicamento tipoMedicamento = TipoMedicamento.valueOf(partes[1].toUpperCase());
-		String codigoEnfermedad = partes[2];
-		String farmaceutica = partes[3];
-		Double puntuacion = Double.parseDouble(partes[4]);
-		Integer indiceSomatico = Integer.parseInt(partes[5]);
-		LocalDate fecha = LocalDate.parse(partes[6], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		String nombreMedicamento = partes[0].trim();
+		TipoMedicamento tipoMedicamento = TipoMedicamento.valueOf(partes[1].trim().toUpperCase());
+		String codigoEnfermedad = partes[2].trim();
+		String farmaceutica = partes[3].trim();
+		Double puntuacion = Double.parseDouble(partes[4].trim());
+		Integer indiceSomatico = Integer.parseInt(partes[5].trim());
+		LocalDate fecha = LocalDate.parse(partes[6].trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		return new Medicamento(nombreMedicamento, tipoMedicamento, codigoEnfermedad, farmaceutica, puntuacion, indiceSomatico, fecha);
 	}
 	

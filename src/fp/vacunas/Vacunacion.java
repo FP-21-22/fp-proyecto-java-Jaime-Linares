@@ -17,28 +17,20 @@ public record Vacunacion(LocalDate fecha, String comunidad, Integer pfizer, Inte
 	// Métodos de factoria
 	public static Vacunacion of(LocalDate fecha, String comunidad, Integer pfizer, Integer moderna, Integer astrazeneca,
 		Integer janssen, Integer numeroPersonas) {
-		Checkers.check("La fecha de debe ser posterior al 01/02/2021.", fecha.isAfter(LocalDate.of(2021, 2, 1)));
 		return new Vacunacion(fecha, comunidad, pfizer, moderna, astrazeneca, janssen, numeroPersonas);
 	}
 	
 	public static Vacunacion parse(String cadena) {
 		String[] partes = cadena.split(";");
-		String fecha = partes[0];
+		String fecha = partes[0].trim();
 		LocalDate fechaParseada = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		String comunidad = partes[1];
-		String pfizer = partes[2];
-		Integer pfizerParseada = Integer.parseInt(pfizer);
-		String moderna = partes[3];
-		Integer modernaParseada = Integer.parseInt(moderna);
-		String astrazeneca = partes[4];
-		Integer astrazenecaParseada = Integer.parseInt(astrazeneca);
-		String janssen = partes[5];
-		Integer janssenParseada = Integer.parseInt(janssen);
-		String numeroPersonas = partes[6];
-		Integer numeroPersonasParseada = Integer.parseInt(numeroPersonas);
-		Checkers.check("La fecha de debe ser posterior al 01/02/2021.", fechaParseada.isAfter(LocalDate.of(2021, 2, 1)));
-		return new Vacunacion(fechaParseada, comunidad, pfizerParseada, modernaParseada, astrazenecaParseada,
-				janssenParseada, numeroPersonasParseada);
+		String comunidad = partes[1].trim();
+		Integer pfizer = Integer.parseInt(partes[2].trim());
+		Integer moderna = Integer.parseInt(partes[3].trim());
+		Integer astrazeneca = Integer.parseInt(partes[4].trim());
+		Integer janssen = Integer.parseInt(partes[5].trim());
+		Integer numeroPersonas = Integer.parseInt(partes[6].trim());
+		return new Vacunacion(fechaParseada, comunidad, pfizer, moderna, astrazeneca, janssen, numeroPersonas);
 	}
 	
 	

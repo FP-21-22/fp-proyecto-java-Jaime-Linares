@@ -7,6 +7,7 @@ import fp.vacunas.Vacunacion;
 public class TestVacunacion {
 
 	public static void main(String[] args) {
+		System.out.println("*** TEST TIPO VACUNACIÓN ***");
 		Vacunacion v1 = new Vacunacion(LocalDate.of(2021, 8, 20), "Andalucía", 140295, 12098, 0, 0, 150);
 		System.out.println(v1.toString());
 		System.out.println("Fecha: " + v1.fecha());

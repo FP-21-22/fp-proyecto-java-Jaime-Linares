@@ -31,8 +31,6 @@ public record Persona(String nombre, String apellidos, String dni, LocalDate fec
 	
 	// Métodos de factoria
 	public static Persona of(String nombre, String apellidos, String dni, LocalDate fechaNacimiento) {
-		Checkers.check("La fecha de nacimiento debe ser anterior a la fecha actual.", fechaNacimiento.isBefore(LocalDate.now()));
-		Checkers.check("El dni no es correcto, debe contener 8 números y una letra (en mayuscula).", verificaDni(dni));
 		return new Persona(nombre, apellidos, dni, fechaNacimiento);
 	}
 	
@@ -43,8 +41,6 @@ public record Persona(String nombre, String apellidos, String dni, LocalDate fec
 		String dni = partes[2].trim();
 		String fechaNac = partes[3].trim();
 		LocalDate fechaNacimiento = LocalDate.parse(fechaNac, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		Checkers.check("La fecha de nacimiento debe ser anterior a la fecha actual.", fechaNacimiento.isBefore(LocalDate.now()));
-		Checkers.check("El dni no es correcto, debe contener 8 números y una letra (en mayuscula).", verificaDni(dni));
 		return new Persona(nombre, apellidos, dni, fechaNacimiento);
 	}
 			

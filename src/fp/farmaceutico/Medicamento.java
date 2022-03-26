@@ -71,7 +71,7 @@ public class Medicamento implements Comparable<Medicamento> {
 	
 	// Métodos de las propiedades (derivadas)
 	public Boolean getTratarEnfermedad(String cadena) {
-		Boolean res = this.codigoEnfermedad == cadena;
+		Boolean res = this.getCodigoEnfermedad().equals(cadena);
 		return res;
 	}
 

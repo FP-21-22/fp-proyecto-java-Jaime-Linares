@@ -9,6 +9,7 @@ import fp.clinico.Persona;
 public class TestPaciente {
 
 	public static void main(String[] args) {
+		System.out.println("*** TEST TIPO PACIENTE ***");
 		Paciente p1 = new Paciente(Persona.of("Jaime", "Linares Barrera", "29542630G", LocalDate.of(2003, 5, 29)), "ABC123", LocalDateTime.of(2021, 3, 21, 1, 39));
 		System.out.println(p1.toString());
 		System.out.println("Persona: " + p1.persona());
