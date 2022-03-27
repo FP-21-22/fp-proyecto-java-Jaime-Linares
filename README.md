@@ -14,7 +14,6 @@ Aquí debes añadir la descripción del dataset y un enunciado del dominio del p
   * **fp.farmaceutico.test**: Paquete que contiene las clases de test de ciertos tipos del proyecto.
   * **fp.vacunas**: Paquete que contiene alguno de los tipos del proyecto.
   * **fp.vacunas.test**: Paquete que contiene las clases de test de ciertos tipos del proyecto.
-  * **fp.common**: Paquete que contiene los tipos auxiliares del proyecto
   * **fp.utiles**:  Paquete que contiene las clases de utilidad. 
 * **/data**: Contiene el dataset o datasets del proyecto
     * **\<dataset1.csv\>**: Añade una descripción genérica del dataset.
