@@ -9,6 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FactoriaMedicamentos {
+
+	// Método static: parseaMedicamento 
+	public static Medicamento parseaMedicamento(String cadena) {
+		String[] partes = cadena.split(",");
+		String nombreMedicamento = partes[0].trim();
+		TipoMedicamento tipoMedicamento = TipoMedicamento.valueOf(partes[1].trim().toUpperCase());
+		String codigoEnfermedad = partes[2].trim();
+		String farmaceutica = partes[3].trim();
+		Double puntuacion = Double.parseDouble(partes[4].trim());
+		Integer indiceSomatico = Integer.parseInt(partes[5].trim());
+		LocalDate fecha = LocalDate.parse(partes[6].trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		return new Medicamento(nombreMedicamento, tipoMedicamento, codigoEnfermedad, farmaceutica, puntuacion, indiceSomatico, fecha);
+	}
+	
 	
 	// Método para la lectura de ficheros
 	public static List<Medicamento> leeFichero(String nombreFichero) {
@@ -21,23 +35,15 @@ public class FactoriaMedicamentos {
 		}
 		aux.remove(0);
 		for(String e: aux) {
-			Medicamento m = parseaMedicamento(e);    
+			Medicamento m = parseaLinea(e);    
 			res.add(m);
 		}
 		return res;
 	}
 
-	// Método static: parseaMedicamento (parseo para las lineas del fichero)
-	public static Medicamento parseaMedicamento(String cadena) {
-		String[] partes = cadena.split(",");
-		String nombreMedicamento = partes[0].trim();
-		TipoMedicamento tipoMedicamento = TipoMedicamento.valueOf(partes[1].trim().toUpperCase());
-		String codigoEnfermedad = partes[2].trim();
-		String farmaceutica = partes[3].trim();
-		Double puntuacion = Double.parseDouble(partes[4].trim());
-		Integer indiceSomatico = Integer.parseInt(partes[5].trim());
-		LocalDate fecha = LocalDate.parse(partes[6].trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		return new Medicamento(nombreMedicamento, tipoMedicamento, codigoEnfermedad, farmaceutica, puntuacion, indiceSomatico, fecha);
+	// Método auxiliar que transforma un String en un objeto de tipo Medicamento
+	private static Medicamento parseaLinea(String cadena) {
+		return FactoriaMedicamentos.parseaMedicamento(cadena);
 	}
 	
 	
