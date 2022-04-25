@@ -19,16 +19,12 @@ public class FactoriaVacunaciones {
 			}
 			aux.remove(0);
 			for(String e: aux) {
-				Vacunacion v = parseaLinea(e);      
+				// parse: método que transforma un String en un objeto de tipo Vacunacion
+				Vacunacion v = Vacunacion.parse(e);     
 				res.add(v);
 			}
 			return res;
 		}
-	
-	// Método auxiliar que transforma un String en un objeto de tipo Vacunacion
-	private static Vacunacion parseaLinea(String cadena) {
-		return Vacunacion.parse(cadena);
-	}
-		
+
 	
 }

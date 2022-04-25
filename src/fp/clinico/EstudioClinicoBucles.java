@@ -66,7 +66,6 @@ public class EstudioClinicoBucles implements EstudioClinico {
 		if(!this.pacientesEstudio.contains(paciente)) {
 			this.pacientesEstudio.add(paciente);
 		}
-
 	}
 
 	@Override

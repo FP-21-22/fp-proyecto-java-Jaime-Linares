@@ -35,17 +35,13 @@ public class FactoriaMedicamentos {
 		}
 		aux.remove(0);
 		for(String e: aux) {
-			Medicamento m = parseaLinea(e);    
+			// parseaMedicamento: método que transforma un String en un objeto de tipo Medicamento
+			Medicamento m = FactoriaMedicamentos.parseaMedicamento(e);   
 			res.add(m);
 		}
 		return res;
 	}
 
-	// Método auxiliar que transforma un String en un objeto de tipo Medicamento
-	private static Medicamento parseaLinea(String cadena) {
-		return FactoriaMedicamentos.parseaMedicamento(cadena);
-	}
-	
 	
 }
 

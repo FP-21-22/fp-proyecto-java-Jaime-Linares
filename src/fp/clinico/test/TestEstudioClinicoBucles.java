@@ -11,7 +11,7 @@ public class TestEstudioClinicoBucles {
 		//
 		System.out.println("\n*** TEST LEE FICHERO ***");
 		EstudioClinico a = new EstudioClinicoBucles();
-		EstudioClinico b = new EstudioClinicoBucles(a.leeFichero("data/estudio_clinico.csv"));
+		EstudioClinico b = a.of("data/estudio_clinico.csv");
 		
 	}
 
