@@ -2,7 +2,10 @@
 Autor: Jaime Linares Barrera       
 uvus: jailinbar
 
-Aquí debes añadir la descripción del dataset y un enunciado del dominio del proyecto.
+En el proyecto tenemos tres dataset:
+ - estudio_clinico.csv: contiene la información sobre objetos del tipo PacienteEstudio.
+ - medicamentos.csv: contiene la información sobre objetos del tipo Medicamento.
+ - ccaa_vacunas_3.csv: contiene la información sobre objetos del tipo Vacunacion.
 
 
 ## Estructura de las carpetas del proyecto
@@ -15,28 +18,54 @@ Aquí debes añadir la descripción del dataset y un enunciado del dominio del p
   * **fp.vacunas**: Paquete que contiene alguno de los tipos del proyecto.
   * **fp.vacunas.test**: Paquete que contiene las clases de test de ciertos tipos del proyecto.
   * **fp.utiles**:  Paquete que contiene las clases de utilidad. 
-* **/data**: Contiene el dataset o datasets del proyecto
-    * **\<dataset1.csv\>**: Añade una descripción genérica del dataset.
+* **/data**: Contiene los datasets del proyecto
+    * **estudio_clinico.csv**: contiene la información sobre objetos del tipo PacienteEstudio.
+    * **medicamentos.csv**: contiene la información sobre objetos del tipo Medicamento.
+    * **ccaa_vacunas_3.csv**: contiene la información sobre objetos del tipo Vacunacion.
 * **/doc**: Contiene la documentación y enunciado del proyecto.
     
 ## Estructura del *dataset*
 
-Aquí debes describir la estructura del dataset explicando qué representan los datos que contiene y la descripción de cada una de las columnas. Incluye también la URL del dataset original.
+### estudio_clinico.csv
+El dataset está compuesto por 7 columnas, con la siguiente descripción:
 
-El dataset está compuesto por \<N\> columnas, con la siguiente descripción:
+* **id**: de tipo String, representa el id del paciente que se esta estudiando.
+* **genero**: de tipo String, representa el genero del paciente que se esta estudiando.
+* **edad**: de tipo Double, representa la edad del paciente que se esta estudiando.
+* **hipertension**: de tipo Boolean, representa si el paciente que se esta estudiando tiene hipertension o no.
+* **enfermedadCorazon**: de tipo Boolean, representa si el paciente que se esta estudiando tiene alguna enfermedad del corazón.
+* **tipoDeResidencia**: de tipo TipoResidencia, representa el tipo de residencia del paciente que se esta estudiando.
+* **nivelMedioGlucosa**: de tipo Double, representa el nivel medio de glucosa que tiene el pacinete que se esta estudiando.
 
-* **\<columna 1>**: de tipo \<tipo\>, representa....
-* **\<columna 2>**: de tipo \<tipo\>, representa....
-....
+### medicamentos.csv
+El dataset está compuesto por 7 columnas, con la siguiente descripción:
+
+* **nombreMedicamento**: de tipo String, representa el nombre del medicamento.
+* **tipoDeMedicamento**: de tipo TipoMedicamento, representa el tipo de medicamento.
+* **codigoEnfermedad**: de tipo String, representa el codigo de la enfermedad.
+* **farmaceutica**: de tipo String, representa la farmaceutica que ha vendido tal producto.
+* **puntuacion**: de tipo Double, representa la puntuacion del medicamento.
+* **indiceSomatico**: de tipo Integer, representa el indice somatico del medicamento.
+* **fechaCatalogo**: de tipo LocalDate, representa la fecha de catalogo del medicamento.
+
+### ccaa_vacunas_3.csv
+El dataset está compuesto por 7 columnas, con la siguiente descripción:
+
+* **fecha**: de tipo LocalDate, representa la fecha de vacunación.
+* **comunidad**: de tipo String, representa la comunidad autónoma.
+* **pfizer**: de tipo Integer, representa número de vacunas de pfizer.
+* **moderna**: de tipo Integer, representa el número de vacunas de moderna.
+* **astrazeneca**: de tipo Integer, representa el número de vacunas de astrazeneca.
+* **janssen**: de tipo Integer, representa el número de vacunas de janssen.
+* **numeroPersonas**: de tipo Integer, representa el numero de personas que se han vacunado.
+
+
 
 ## Tipos implementados
 
-En el proyecto hemos implementado los tipos Persona, Paciente, PacienteEstudio, Vacunacion y Medicamentos.
+En el proyecto hemos implementado los tipos Persona, Paciente, PacienteEstudio, Vacunacion, Medicamentos y EstudioClinico.
 
-### Tipos Base
-
-
-#### Tipo Persona
+### Tipo Persona
 
 **Propiedades**:
 
@@ -68,7 +97,7 @@ En el proyecto hemos implementado los tipos Persona, Paciente, PacienteEstudio, 
 Ejemplo de cadena: “Juan, García Rodríguez, 12755078Z, 20/03/1965”. 
 
 
-#### Tipo Paciente
+### Tipo Paciente
 
 **Propiedades**:
 
@@ -97,7 +126,7 @@ ingreso y devuelve un paciente.
 - Método static of: recibe un objeto persona, un código y una fecha y hora de ingreso y devuelve un paciente. 
 
 
-#### Tipo PacienteEstudio
+### Tipo PacienteEstudio
 
 **Propiedades**:
 
@@ -106,7 +135,7 @@ ingreso y devuelve un paciente.
 - edad, de tipo Double, consultable. 
 - hipertension, de tipo Boolean, consultable.
 - enfermedadCorazon, de tipo Boolean, consultable.
-- tipoDeResidencia, de tipo Residencia, consultable.
+- tipoDeResidencia, de tipo TipoResidencia, consultable.
 - nivelMedioGlucosa, de tipo Double, consultable.
 - factorRiesgo, de tipo Boolean, derivada.
  
@@ -130,8 +159,12 @@ ingreso y devuelve un paciente.
 - Método static of: recibe valores para cada propiedad basica y devuelve un objeto del tipo PacienteEstudio. 
 - Método static parse: recibe una cadena con un formato especificado y y devuelve un objeto del tipo. Ejemplo de cadena: “6306;Male;80;false;false;URBANA;83.84” 
 
+**Tipos auxiliares**:
 
-#### Tipo Vacunacion
+- TipoResidencia: es un enum que tomará los valores RURAL o URBANA.
+
+
+### Tipo Vacunacion
 
 **Propiedades**:
 
@@ -163,8 +196,14 @@ ingreso y devuelve un paciente.
 - Método static of: recibe valores para cada propiedad básica y devuelve un objeto del tipo. 
 - Método static parse: recibe una cadena con un formato específico y devuelve un objeto del tipo. Ejemplo de cadena: “04/01/2021;Andalucía;140295;0;0;0;0”. 
 
+**FactoriaVacunacion**:
 
-#### Tipo Medicamento
+Clase que incluye:
+- _leeFichero_ : método que dandole la ruta de un csv devuelve una lista con objetos del tipo Vacunacion. Utilizamos para parsear cada linea de fichero el
+metodo parse del Tipo Vacunanción.
+
+
+### Tipo Medicamento
 
 **Propiedades**:
 
@@ -193,47 +232,79 @@ ingreso y devuelve un paciente.
 
 **Representacion como cadena**: según el nombre del medicamento y de la farmacéutica. 
 
+**Tipos auxiliares**:
 
-### Tipos auxiliares
-- TipoResidencia: es un enum que tomará los valores RURAL o URBANA.
 - TipoMedicamento: es un enum que tomará los valores ANATOMICO, QUIMICO o TERAPEUTICO.
-- FactoriaMedicamentos: clase que incluye un método static de nombre parseaMedicamente, que recibe una cadena con un formato específico y devuelve un objeto de tipo Medicamento. Ejemplo: “efavirenz,Anatomico,Y212XXA,Actavis Mid Atlantic LLC,90.0,1848,04/12/2019”. 
+
+**FactoriaMedicamentos**:
+
+Clase que incluye:
+- _parseaMedicamento_: recibe una cadena con un formato específico y devuelve un objeto de tipo Medicamento. Ejemplo: “efavirenz,Anatomico,Y212XXA,Actavis Mid Atlantic LLC,90.0,1848,04/12/2019”. 
+- _leeFichero_: método que devuelve una lista con objetos de tipo Medicamento (viene de leer el csv). Utilizamos en metodo parseaMedicamento para parsear
+cada línea del csv.
 
 
-### Factoría
-Descripción breve de la factoría.
+### Tipo EstudioClinico
 
-- _método 1_: Descripción del método 1.
--	_método 2_: Descripción del método 2.
+Es una interfaz que implementa a dos clases EstudioClinicoBucles y EstudioClinico:
 
-
-### Tipo Contenedor
-
-Descripción breve del tipo contenedor.
+### EstudioClinicoBucles
 
 **Propiedades**:
 
-- _propiedad1_, de tipo \<Tipo1\>, consultable. 
-- _propiedad2_, de tipo \<Tipo2\>, consultable y modificable. 
-- ...
-
+- pacientesEstudio, de tipo List<PacienteEstudio>, consultable.
+ 
 **Constructores**: 
 
-- C1: Descripción del constructor 1.
-- C2: Descripción del constructor 2.
-- ...
-
-**Restricciones**:
+- C1: constructor vacío
+- C2: constructor al que le das como parámetro una lista de objetos PacienteEstudio.
  
-- R1: Descripción de la restricción 1.
-- R2: Descripción de la restricción 2.
-- ...
-- 
-**Criterio de igualdad**: Describir el criterio de igualdad
-
-**Criterio de ordenación**: Describir el criterio de ordenación (si lo hay).
-
-**Otras operaciones**:
+**Otras operaciones**
  
--	_método 1_: Descripción del método 1.
-- ...
+- Integer numeroPacientes()
+- void incluyePaciente(PacienteEstudio paciente)
+- void incluyePacientes(Collection<PacienteEstudio> pacientes)
+- void eliminaPaciente(PacienteEstudio paciente)
+- Boolean estaPaciente(PacienteEstudio paciente)
+- void borraEstudio()
+- EstudioClinico of(String nombreFichero)
+- List<PacienteEstudio> leeFichero(String nombreFichero)
+- Boolean todosPacienteSonDelTipo(TipoResidencia tipo)
+- Boolean existeAlgunPacienteDelTipo(TipoResidencia tipo)
+- Integer numeroPacientesFactorRiesgo()
+- Double edadMediaPacientesConFactorRiesgo()
+- List<PacienteEstudio> filtraPacientesPorEdad(Double edad)
+- Map<String,List<PacienteEstudio>> agruparPacientesEdadMayorQuePorGenero(Double edad)
+- Map<String,Long> numeroPacientesPorGenero()
+- Map<String,Double> edadMediaPacientesPorPorGenero()
+ 
+ ### EstudioClinicoStream
+ 
+ **Propiedades**:
+
+- pacientesEstudio, de tipo List<PacienteEstudio>, consultable.
+ 
+**Constructores**: 
+
+- C1: constructor vacío
+- C2: constructor al que le das como parámetro una lista de objetos PacienteEstudio.
+ 
+**Otras operaciones**
+ 
+- Integer numeroPacientes()
+- void incluyePaciente(PacienteEstudio paciente)
+- void incluyePacientes(Collection<PacienteEstudio> pacientes)
+- void eliminaPaciente(PacienteEstudio paciente)
+- Boolean estaPaciente(PacienteEstudio paciente)
+- void borraEstudio()
+- EstudioClinico of(String nombreFichero)
+- List<PacienteEstudio> leeFichero(String nombreFichero)
+- Boolean todosPacienteSonDelTipo(TipoResidencia tipo)
+- Boolean existeAlgunPacienteDelTipo(TipoResidencia tipo)
+- Integer numeroPacientesFactorRiesgo()
+- Double edadMediaPacientesConFactorRiesgo()
+- List<PacienteEstudio> filtraPacientesPorEdad(Double edad)
+- Map<String,List<PacienteEstudio>> agruparPacientesEdadMayorQuePorGenero(Double edad)
+- Map<String,Long> numeroPacientesPorGenero()
+- Map<String,Double> edadMediaPacientesPorPorGenero()
+
