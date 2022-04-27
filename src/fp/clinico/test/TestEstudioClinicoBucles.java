@@ -2,7 +2,6 @@ package fp.clinico.test;
 
 import fp.clinico.EstudioClinico;
 import fp.clinico.EstudioClinicoBucles;
-import fp.clinico.PacienteEstudio;
 
 public class TestEstudioClinicoBucles {
 
@@ -12,7 +11,7 @@ public class TestEstudioClinicoBucles {
 		System.out.println("\n*** TEST LEE FICHERO ***");
 		EstudioClinico a = new EstudioClinicoBucles();
 		EstudioClinico b = a.of("data/estudio_clinico.csv");
-		
+		System.out.println(b);
 	}
 
 }
