@@ -6,6 +6,15 @@ import java.util.Map;
 
 public interface EstudioClinico {
 	
+	// Métodos de factoría
+	EstudioClinico of(String nombreFichero);
+	List<PacienteEstudio> leeFichero(String nombreFichero);
+	
+	
+	// Métodos de las propiedades (básicas)
+	List<PacienteEstudio> getPacientesEstudio();
+	
+	
 	// Propiedades de lista
 	Integer numeroPacientes();
 	void incluyePaciente(PacienteEstudio paciente);
@@ -13,11 +22,6 @@ public interface EstudioClinico {
 	void eliminaPaciente(PacienteEstudio paciente);
 	Boolean estaPaciente(PacienteEstudio paciente);
 	void borraEstudio();
-		
-	
-	// Métodos de factoría
-	EstudioClinico of(String nombreFichero);
-	List<PacienteEstudio> leeFichero(String nombreFichero);
 	
 		
 	// Tratamientos secuenciales: implementación funcional vs. imperativa

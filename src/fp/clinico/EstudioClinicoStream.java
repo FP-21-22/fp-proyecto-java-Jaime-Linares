@@ -1,16 +1,32 @@
 package fp.clinico;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 public class EstudioClinicoStream implements EstudioClinico {
 
+	// Atributos
+	private List<PacienteEstudio> pacientesEstudio;
+	
+	
+	// Constructores
+		// C1: constructor vacío
+	public EstudioClinicoStream() {
+		this.pacientesEstudio = new ArrayList<>();
+	}
+		
+		// C2: constructor que recibe una lista de objetos del tipo PacienteEstudio como parámetro
+	public EstudioClinicoStream(List<PacienteEstudio> pacientesEstudio) {
+		this.pacientesEstudio = pacientesEstudio;
+	}
+		
+		
 	// Métodos de factoría
 	@Override
 	public EstudioClinico of(String nombreFichero) {
-		// TODO Auto-generated method stub
-		return null;
+		return new EstudioClinicoBucles(this.leeFichero(nombreFichero));
 	}
 
 	@Override
@@ -20,41 +36,47 @@ public class EstudioClinicoStream implements EstudioClinico {
 	}
 	
 	
+	// Métodos de las propiedades (básicas)
+	public List<PacienteEstudio> getPacientesEstudio() {
+		return new ArrayList<>(this.pacientesEstudio);
+	}
+	
+	
 	// Propiedades derivadas - Propiedades de listas
 	@Override
 	public Integer numeroPacientes() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.pacientesEstudio.size();
 	}
 
 	@Override
 	public void incluyePaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
-
+		if(!this.pacientesEstudio.contains(paciente)) {
+			this.pacientesEstudio.add(paciente);
+		}
 	}
 
 	@Override
 	public void incluyePacientes(Collection<PacienteEstudio> pacientes) {
-		// TODO Auto-generated method stub
-
+		for(PacienteEstudio pe: pacientes) {
+			if(!this.pacientesEstudio.contains(pe)) {
+				this.pacientesEstudio.add(pe);
+			}
+		}
 	}
 
 	@Override
 	public void eliminaPaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
-
+		this.pacientesEstudio.remove(paciente);
 	}
 
 	@Override
 	public Boolean estaPaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.pacientesEstudio.contains(paciente);
 	}
 
 	@Override
 	public void borraEstudio() {
-		// TODO Auto-generated method stub
-
+		this.pacientesEstudio.clear();
 	}
 
 	
@@ -111,5 +133,5 @@ public class EstudioClinicoStream implements EstudioClinico {
 		return null;
 	}
 
-	
+
 }

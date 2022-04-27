@@ -48,7 +48,7 @@ public class TestMedicamento {
 		System.out.println("¿Es m1 igual que m3?: " + m5.equals(m5));
 		System.out.println(String.format("¿Es m1 mayor que m2?: %s", m5.compareTo(m4) > 0));
 		//
-		System.out.println("\n*** TEST LEE FICHERO ***");
+		System.out.println("\n* TEST LEE FICHERO *");
 		List<Medicamento> ls = FactoriaMedicamentos.leeFichero("data/medicamentos.csv");
 		for(Medicamento m: ls) {
 			System.out.println(m);

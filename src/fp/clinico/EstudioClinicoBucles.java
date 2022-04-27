@@ -43,17 +43,19 @@ public class EstudioClinicoBucles implements EstudioClinico {
 			e.printStackTrace();
 		}
 		for(String e: aux) {
-			PacienteEstudio pe = parseaLinea(e);
+			// parse: método que transforma un String en un objeto de tipo PacienteEstudio
+			PacienteEstudio pe = PacienteEstudio.parse(e);
 			res.add(pe);
 		}
 		return res;
 	}
-		
-		// Método auxiliar que transforma un String en un objeto de tipo PacienteEstudio
-		private static PacienteEstudio parseaLinea(String cadena) {
-			return PacienteEstudio.parse(cadena);
-		}
-		
+	
+	
+	// Métodos de las propiedades (básicas)
+	public List<PacienteEstudio> getPacientesEstudio() {
+		return new ArrayList<>(this.pacientesEstudio);
+	}
+
 	
 	// Propiedades derivadas - Propiedades de listas
 	@Override
@@ -190,20 +192,8 @@ public class EstudioClinicoBucles implements EstudioClinico {
 
 	@Override
 	public Map<String, Double> edadMediaPacientesPorGenero() {
-		Map<String, List<Double>> aux = new HashMap<>();
+		Map<String, List<Double>> aux = this.edadesPacientesPorGenero();
 		Map<String, Double> res = new HashMap<>();
-		/* Hacemos un map en el que las claves son los generos y los valores son 
-		 listas de las edades de esos pacientes que coinciden con ese genero */
-		for(PacienteEstudio pe: this.pacientesEstudio) {
-			String clave = pe.genero();
-			if(aux.containsKey(clave)) {
-				aux.get(clave).add(pe.edad());
-			} else {
-				List<Double> valores = new ArrayList<>();
-				valores.add(pe.edad());
-				aux.put(clave, valores);
-			}
-		}
 		/* Recorremos el map aux y ahora hacemos un map donde las claves sigue siendo el
 		 genero pero ahora los valores es la edad media, que la calcularemos sumando las 
 		 edades de la lista y dividiendola entre su tamaño */
@@ -218,6 +208,22 @@ public class EstudioClinicoBucles implements EstudioClinico {
 		}
 		return res;
 	}
-
+		/* Función auxiliar: devuelve un map en el que las claves son los géneros y los 
+		 valores son listas de las edades de esos pacientes que coinciden con ese genero */
+	private Map<String, List<Double>> edadesPacientesPorGenero() {
+		Map<String, List<Double>> res = new HashMap<>();
+		for(PacienteEstudio pe: this.pacientesEstudio) {
+			String clave = pe.genero();
+			if(res.containsKey(clave)) {
+				res.get(clave).add(pe.edad());
+			} else {
+				List<Double> valores = new ArrayList<>();
+				valores.add(pe.edad());
+				res.put(clave, valores);
+			}
+		}
+		return res;
+	}
+	
 	
 }
