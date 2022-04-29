@@ -192,7 +192,8 @@ public class EstudioClinicoBucles implements EstudioClinico {
 
 	@Override
 	public Map<String, Double> edadMediaPacientesPorGenero() {
-		Map<String, List<Double>> aux = this.edadesPacientesPorGenero();
+		// Llamamos a la función auxiliar y construimos el map que devolveremos
+		Map<String, List<Double>> aux = this.edadesPacientesPorGenero();  
 		Map<String, Double> res = new HashMap<>();
 		/* Recorremos el map aux y ahora hacemos un map donde las claves sigue siendo el
 		 genero pero ahora los valores es la edad media, que la calcularemos sumando las 
