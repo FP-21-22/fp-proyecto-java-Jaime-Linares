@@ -10,8 +10,8 @@ import java.util.List;
 
 public class FactoriaMedicamentos {
 
-	// Método static: parseaMedicamento 
-	public static Medicamento parseaMedicamento(String cadena) {
+	// Método static: parseaMedicamento  (no esta puesto private ya que en la primera entrega nos dijo de hacerlo a parte
+	public static Medicamento parseaMedicamento(String cadena) {      
 		String[] partes = cadena.split(",");
 		String nombreMedicamento = partes[0].trim();
 		TipoMedicamento tipoMedicamento = TipoMedicamento.valueOf(partes[1].trim().toUpperCase());

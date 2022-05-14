@@ -1,9 +1,7 @@
 package fp.vacunas.test;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import fp.vacunas.FactoriaVacunaciones;
 import fp.vacunas.Vacunacion;
 
 public class TestVacunacion {
@@ -27,19 +25,6 @@ public class TestVacunacion {
 		System.out.println(String.format("¿Es v1 igual que v2?: %s", v1.equals(v2)));
 		System.out.println(String.format("¿Es v2 igual que v3?: %s", v3.equals(v2)));
 		System.out.println(String.format("¿Es v1 mayor que v3?: %s", v1.compareTo(v3) > 0));
-		// 
-		System.out.println("\n* TEST LEE FICHERO *");
-		System.out.println("Los 100 primeros del tipo Vacunacion son:");
-		List<Vacunacion> ls = FactoriaVacunaciones.leeFichero("data/ccaa_vacunas_3.csv");
-		int c = 1;
-		for(Vacunacion v: ls) {
-			String num = String.valueOf(c);
-			System.out.println(num + " -> " + v);
-			c++;
-			if (c > 100) {
-				break;
-			}
-		}
 	}
 
 }
