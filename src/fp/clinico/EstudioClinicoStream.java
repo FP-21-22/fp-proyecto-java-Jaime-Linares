@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EstudioClinicoStream implements EstudioClinico {
 
@@ -83,40 +84,49 @@ public class EstudioClinicoStream implements EstudioClinico {
 	// Propiedades derivadas - Operaciones - Tratamientos secuenciales
 	@Override
 	public Boolean todosPacienteSonDelTipo(TipoResidencia tipo) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.pacientesEstudio.stream()
+				.allMatch(x -> x.tipoDeResidencia().equals(tipo));
 	}
 
 	@Override
 	public Boolean existeAlgunPacienteDelTipo(TipoResidencia tipo) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.pacientesEstudio.stream()
+				.anyMatch(x -> x.tipoDeResidencia().equals(tipo));
 	}
 
 		// contador, suma, media
 	@Override
 	public Integer numeroPacientesFactorRiesgo() {
-		// TODO Auto-generated method stub
-		return null;
+		Long res = this.pacientesEstudio.stream()
+				.filter(x -> x.factorRiesgo())
+				.count();
+		return res.intValue();
 	}
 
 	@Override
 	public Double edadMediaPacientesConFactorRiesgo() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.pacientesEstudio.stream()
+				.filter(x -> x.factorRiesgo())
+				.mapToDouble(x -> x.edad())
+				.average()
+				.orElse(0);     // sino puede hacer la media devolverá 0
 	}
 
 		// filtrado
 	@Override
 	public List<PacienteEstudio> filtraPacientesPorEdad(Double edad) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.pacientesEstudio.stream()
+				.filter(x -> x.edad().equals(edad))
+				.collect(Collectors.toList());
 	}
 
 		// devuelve un Map que agrupa
 	@Override
 	public Map<String, List<PacienteEstudio>> agruparPacientesEdadMayorQuePorGenero(Double edad) {
 		// TODO Auto-generated method stub
+//		Map<String, List<PacienteEstudio>> res = this.pacientesEstudio.stream()
+//				.filter(x -> x.edad() > edad)
+//				.collect(Collectors.groupingBy(PacienteEstudio::genero));
 		return null;
 	}
 
@@ -124,12 +134,16 @@ public class EstudioClinicoStream implements EstudioClinico {
 	@Override
 	public Map<String, Long> numeroPacientesPorGenero() {
 		// TODO Auto-generated method stub
+//		Map<String, Long> res = this.pacientesEstudio.stream()
+//				.collect(Collectors.groupingBy(PacienteEstudio::genero, Collectors.counting()));
 		return null;
 	}
 
 	@Override
 	public Map<String, Double> edadMediaPacientesPorGenero() {
 		// TODO Auto-generated method stub
+//		Map<String, Double> res = this.pacientesEstudio.stream()
+//				.collect(Collectors.groupingBy(PacienteEstudio::genero, Collectors.averagingDouble(PacienteEstudio::edad)));
 		return null;
 	}
 
