@@ -109,7 +109,7 @@ public class EstudioClinicoStream implements EstudioClinico {
 				.filter(x -> x.factorRiesgo())
 				.mapToDouble(x -> x.edad())
 				.average()
-				.orElse(0);     // sino puede hacer la media devolverá 0
+				.orElse(0);     // sino puede hacer la media devolverá un 0
 	}
 
 		// filtrado

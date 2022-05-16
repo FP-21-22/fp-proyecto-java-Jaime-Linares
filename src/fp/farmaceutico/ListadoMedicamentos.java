@@ -46,11 +46,17 @@ public class ListadoMedicamentos {
 	
 	public Map<TipoMedicamento, Double> agrupaTipoMedicamentoSegunPuntuacionMedia() {
 		// TODO
+//		Map<TipoMedicamento, Double> res = this.medicamentos.stream()    ---> esta mal
+//				.collect(Collectors.groupingBy(Medicamento::tipoDeMedicamento, Collectors.averagingDouble(Medicamento::puntuacion)));
 		return null;
 	}
 	
 	public LocalDate fechaCatalogoMasFrecuente() {
 		// TODO
+//		Map<LocalDate, Integer> res = this.medicamentos.stream()      ---> esta mal
+//				.collect(Collectors.groupingBy(Medicamento::fechaCatalogo, Collectors.counting()));
+//		SortedMap<LocalDate, Integer> resres = new TreeMap<>(res, Comparator.comparingInt(null));
+//		return resres.firstKey();
 		return null;
 	}
 	
