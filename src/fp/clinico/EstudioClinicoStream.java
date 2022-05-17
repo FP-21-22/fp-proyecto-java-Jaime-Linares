@@ -1,5 +1,8 @@
 package fp.clinico;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -32,8 +35,16 @@ public class EstudioClinicoStream implements EstudioClinico {
 
 	@Override
 	public List<PacienteEstudio> leeFichero(String nombreFichero) {
-		// TODO Auto-generated method stub
-		return null;
+		List<PacienteEstudio> res = null;
+		try {
+			res = Files.lines(Paths.get(nombreFichero))
+					.skip(1)
+					.map(x -> PacienteEstudio.parse(x))
+					.collect(Collectors.toList());
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 	
 	
@@ -123,28 +134,23 @@ public class EstudioClinicoStream implements EstudioClinico {
 		// devuelve un Map que agrupa
 	@Override
 	public Map<String, List<PacienteEstudio>> agruparPacientesEdadMayorQuePorGenero(Double edad) {
-		// TODO Auto-generated method stub
-//		Map<String, List<PacienteEstudio>> res = this.pacientesEstudio.stream()
-//				.filter(x -> x.edad() > edad)
-//				.collect(Collectors.groupingBy(PacienteEstudio::genero));
-		return null;
+		return this.pacientesEstudio.stream()
+				.filter(x -> x.edad() > edad)
+				.collect(Collectors.groupingBy(PacienteEstudio::genero));
 	}
 
 		// devuelve un Map que realiza un cálculo
 	@Override
 	public Map<String, Long> numeroPacientesPorGenero() {
-		// TODO Auto-generated method stub
-//		Map<String, Long> res = this.pacientesEstudio.stream()
-//				.collect(Collectors.groupingBy(PacienteEstudio::genero, Collectors.counting()));
-		return null;
+		 return this.pacientesEstudio.stream()
+				.collect(Collectors.groupingBy(PacienteEstudio::genero, Collectors.counting()));
 	}
 
 	@Override
 	public Map<String, Double> edadMediaPacientesPorGenero() {
-		// TODO Auto-generated method stub
-//		Map<String, Double> res = this.pacientesEstudio.stream()
-//				.collect(Collectors.groupingBy(PacienteEstudio::genero, Collectors.averagingDouble(PacienteEstudio::edad)));
-		return null;
+		 return this.pacientesEstudio.stream()
+				.collect(Collectors.groupingBy(PacienteEstudio::genero, 
+						Collectors.averagingDouble(PacienteEstudio::edad)));
 	}
 
 

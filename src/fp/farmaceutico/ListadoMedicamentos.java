@@ -45,19 +45,29 @@ public class ListadoMedicamentos {
 	}
 	
 	public Map<TipoMedicamento, Double> agrupaTipoMedicamentoSegunPuntuacionMedia() {
-		// TODO
-//		Map<TipoMedicamento, Double> res = this.medicamentos.stream()    ---> esta mal
-//				.collect(Collectors.groupingBy(Medicamento::tipoDeMedicamento, Collectors.averagingDouble(Medicamento::puntuacion)));
-		return null;
+		return this.medicamentos.stream()
+				.collect(Collectors.groupingBy(Medicamento::getTipoDeMedicamento, 
+						Collectors.averagingDouble(Medicamento::getPuntuacion)));  
 	}
 	
 	public LocalDate fechaCatalogoMasFrecuente() {
-		// TODO
-//		Map<LocalDate, Integer> res = this.medicamentos.stream()      ---> esta mal
-//				.collect(Collectors.groupingBy(Medicamento::fechaCatalogo, Collectors.counting()));
-//		SortedMap<LocalDate, Integer> resres = new TreeMap<>(res, Comparator.comparingInt(null));
-//		return resres.firstKey();
-		return null;
+		// Llamamos a la función auxiliar
+		Map<LocalDate, Long> aux = aparicionesFechaCatalogo();
+		/* Recorremos el Map auxiliar, obtenemos el maximo preguntando por el
+		  valor que toma la clave y despues al par clave-valor tomamos la clave
+		  que es lo que se nos pide en el enunciado  */
+		return aux.entrySet().stream()
+				.max((x, y) -> x.getValue().compareTo(y.getValue()))
+				.get()
+				.getKey();
+	}
+		/* Función auxiliar: Devuelve un map donde las claves son fechaCatalogo
+		 y los valores el número de veces que aparece tal fechaCatalogo, es decir,
+		 actúa como un contador */
+	private Map<LocalDate, Long> aparicionesFechaCatalogo() {
+		return this.medicamentos.stream()
+				.collect(Collectors.groupingBy(Medicamento::getFechaCatalogo, 
+						Collectors.counting()));
 	}
 	
 

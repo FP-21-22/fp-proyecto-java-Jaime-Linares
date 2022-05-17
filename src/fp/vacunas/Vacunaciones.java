@@ -38,9 +38,9 @@ public class Vacunaciones {
 				.collect(Collectors.toList());
 	}
 	
-	public Boolean existeNumPersonasPautaCompletaPorEncimaDe(String comunidad, Integer vacunados) {
+	public Boolean existeNumPersonasPautaCompletaPorEncimaDe(String comunidad, Integer umbralVacunados) {
 		return this.vacunaciones.stream()
-				.anyMatch(x -> x.comunidad().equals(comunidad) && x.numeroPersonas() > vacunados);
+				.anyMatch(x -> x.comunidad().equals(comunidad) && x.numeroPersonas() > umbralVacunados);
 	}
 	
 	public LocalDate diaMasVacunacionesEn(String comunidad) {
@@ -52,17 +52,14 @@ public class Vacunaciones {
 	}
 	
 	public Map<LocalDate, List<Vacunacion>> vacunacionesPorFecha() {
-		// TODO
-//		Map<LocalDate, List<Vacunacion>> res = this.vacunaciones.stream()
-//		.collect(Collectors.groupingBy(Vacunacion::fecha));
-		return null;
+		 return this.vacunaciones.stream()
+				 .collect(Collectors.groupingBy(Vacunacion::fecha));
 	}
 	
 	public Map<String, Integer> maximoNumTotalVacunasporComunidad() {
-		// TODO
-//		Map<String, Integer> res = this.vacunaciones.stream()       ---> esta mal
-//				.collect(Collectors.groupingBy(Vacunacion::comunidad, Collectors.maxBy(Comparator.comparing(Vacunacion::numeroTotal))));
-		return null;
+		return this.vacunaciones.stream()
+				.collect(Collectors.groupingBy(Vacunacion::comunidad, 
+						Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingInt(Vacunacion::numeroTotal)), x -> x.get().numeroTotal())));
 	}
 	
 	
