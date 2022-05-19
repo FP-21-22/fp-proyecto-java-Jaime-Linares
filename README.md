@@ -63,7 +63,7 @@ El dataset está compuesto por 7 columnas, con la siguiente descripción:
 
 ## Tipos implementados
 
-En el proyecto hemos implementado los tipos Persona, Paciente, PacienteEstudio, Vacunacion, Medicamentos y EstudioClinico.
+En el proyecto hemos implementado los tipos Persona, Paciente, PacienteEstudio, Vacunacion, FactoriaVacunaciones, Vacunaciones, Medicamentos, FactoriaMedicamentos, Medicamentos y EstudioClinico, EstudioClinicoBucles, EstudioClinicoStream.
 
 ### Tipo Persona
 
@@ -196,11 +196,30 @@ ingreso y devuelve un paciente.
 - Método static of: recibe valores para cada propiedad básica y devuelve un objeto del tipo. 
 - Método static parse: recibe una cadena con un formato específico y devuelve un objeto del tipo. Ejemplo de cadena: “04/01/2021;Andalucía;140295;0;0;0;0”. 
 
-**FactoriaVacunacion**:
+### FactoriaVacunacion
 
 Clase que incluye:
 - _leeFichero_ : método que dandole la ruta de un csv devuelve una lista con objetos del tipo Vacunacion. Utilizamos para parsear cada linea de fichero el
 metodo parse del Tipo Vacunanción.
+
+### Vacunaciones
+
+**Propiedades**:
+
+- vacunaciones, de tipo lista de Vacunacion, no consultable.
+ 
+**Constructores**:
+ 
+ - C1 : le das como parámetro un tipo Stream de Vacunacion.
+ 
+ **Otras operaciones**:
+ 
+ - void anyadeVacunacion(Vacunacion vacunacion)
+ - List<Vacunacion> vacunacionesEntreFechas(LocalDate inf, LocalDate sup)
+ - Boolean existeNumPersonasPautaCompletaPorEncimaDe(String comunidad, Integer umbralPautaCompleta)
+ - LocalDate diaMasVacunacionesEn(String region)
+ - Map<LocalDate, List<Vacunacion>> vacunacionesPorFecha()
+ - Map<String, Integer> maximoNumTotalVacunasporComunidad()
 
 
 ### Tipo Medicamento
@@ -236,12 +255,29 @@ metodo parse del Tipo Vacunanción.
 
 - TipoMedicamento: es un enum que tomará los valores ANATOMICO, QUIMICO o TERAPEUTICO.
 
-**FactoriaMedicamentos**:
+### FactoriaMedicamentos
 
 Clase que incluye:
 - _parseaMedicamento_: recibe una cadena con un formato específico y devuelve un objeto de tipo Medicamento. Ejemplo: “efavirenz,Anatomico,Y212XXA,Actavis Mid Atlantic LLC,90.0,1848,04/12/2019”. 
 - _leeFichero_: método que devuelve una lista con objetos de tipo Medicamento (viene de leer el csv). Utilizamos en metodo parseaMedicamento para parsear
 cada línea del csv.
+
+### ListadoMedicamentos
+ 
+ **Propiedades**:
+ 
+ - medicamentos, de tipo lista de Medicamento, no consultable.
+ 
+ **Constructores**:
+ 
+ - C1: recibe como parámetro un Stream de tipo Medicamento
+ 
+ **Otras operaciones**:
+ - Boolean existeMedicamentoSegunTipoAnteriorA(TipoMedicamento tipoMedicamento, LocalDate fecha)
+ - Set<String> nombreMedicamentosPuntuacionMayorA(Double puntuacion)
+ - String nombreMedicamentoMayorIndiceSomaticoSegunTipoMedicamento(TipoMedicamento tipoMedicamento)
+ - Map<TipoMedicamento, Double> agrupaTipoMedicamentoSegunPuntuacionMedia()
+ - LocalDate fechaCatalogoMasFrecuente()
 
 
 ### Tipo EstudioClinico
@@ -252,7 +288,7 @@ Es una interfaz que implementa a dos clases EstudioClinicoBucles y EstudioClinic
 
 **Propiedades**:
 
-- pacientesEstudio, de tipo List<PacienteEstudio>, consultable.
+- pacientesEstudio, de tipo lista de PacienteEstudio, consultable.
  
 **Constructores**: 
 
@@ -282,7 +318,7 @@ Es una interfaz que implementa a dos clases EstudioClinicoBucles y EstudioClinic
  
  **Propiedades**:
 
-- pacientesEstudio, de tipo List<PacienteEstudio>, consultable.
+- pacientesEstudio, de tipo lista de PacienteEstudio, consultable.
  
 **Constructores**: 
 
@@ -308,3 +344,5 @@ Es una interfaz que implementa a dos clases EstudioClinicoBucles y EstudioClinic
 - Map<String,Long> numeroPacientesPorGenero()
 - Map<String,Double> edadMediaPacientesPorPorGenero()
 
+
+ 
