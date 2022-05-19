@@ -38,8 +38,8 @@ public class EstudioClinicoStream implements EstudioClinico {
 		List<PacienteEstudio> res = null;
 		try {
 			res = Files.lines(Paths.get(nombreFichero))
-					.skip(1)
-					.map(x -> PacienteEstudio.parse(x))
+			// parse: método que transforma un String en un objeto de tipo PacienteEstudio
+					.map(x -> PacienteEstudio.parse(x))  
 					.collect(Collectors.toList());
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -120,7 +120,7 @@ public class EstudioClinicoStream implements EstudioClinico {
 				.filter(x -> x.factorRiesgo())
 				.mapToDouble(x -> x.edad())
 				.average()
-				.orElse(0);     // sino puede hacer la media devolverá un 0
+				.orElse(0);   // sino puede hacer la media devolverá un 0
 	}
 
 		// filtrado
