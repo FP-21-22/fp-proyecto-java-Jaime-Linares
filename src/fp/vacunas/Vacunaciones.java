@@ -21,9 +21,6 @@ public class Vacunaciones {
 	}
 	
 	
-	// Métodos de las propiedades (básicas) ????
-	
-	
 	// Propiedades derivadas
 	public void anyadeVacunacion(Vacunacion vacuna) {
 		if(!this.vacunaciones.contains(vacuna)) {
@@ -32,7 +29,7 @@ public class Vacunaciones {
 	}
 	
 	public List<Vacunacion> vacunacionesEntreFechas(LocalDate inf, LocalDate sup) {
-		Checkers.check("La fecha superior no puede ser antes que la fecha inferior.", inf.isBefore(sup));
+		Checkers.check("La fecha superior no puede ser anterior a la fecha inferior.", inf.isBefore(sup));
 		return this.vacunaciones.stream()
 				.filter(x -> x.fecha().isAfter(inf) && x.fecha().isBefore(sup))
 				.collect(Collectors.toList());
@@ -61,6 +58,6 @@ public class Vacunaciones {
 				.collect(Collectors.groupingBy(Vacunacion::comunidad, 
 						Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingInt(Vacunacion::numeroTotal)), x -> x.get().numeroTotal())));
 	}
-	
+		
 	
 }
