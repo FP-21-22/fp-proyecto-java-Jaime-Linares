@@ -20,13 +20,11 @@ public class ListadoMedicamentos {
 	}
 	
 	
-	// Métodos de las propiedades (básicas) ????
-	
-	
 	// Propiedades derivadas
 	public Boolean existeMedicamentoSegunTipoAnteriorA(TipoMedicamento tipoMedicamento, LocalDate fecha) {
 		return this.medicamentos.stream()
-				.anyMatch(x -> x.getTipoDeMedicamento().equals(tipoMedicamento) && x.getFechaCatalogo().isAfter(fecha));
+				.anyMatch(x -> x.getTipoDeMedicamento().equals(tipoMedicamento) 
+						&& x.getFechaCatalogo().isBefore(fecha));
 	}
 	
 	public Set<String> nombreMedicamentosPuntuacionMayorA(Double puntuacion) {
@@ -40,7 +38,7 @@ public class ListadoMedicamentos {
 		return this.medicamentos.stream()
 				.filter(x -> x.getTipoDeMedicamento().equals(tipoMedicamento))
 				.max(Comparator.comparing(Medicamento::getIndiceSomatico))
-				.orElseThrow()
+				.orElseThrow()        // sino hay máximo eleva una excepción
 				.getNombreMedicamento();
 	}
 	
