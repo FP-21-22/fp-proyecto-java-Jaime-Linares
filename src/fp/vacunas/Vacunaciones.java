@@ -56,7 +56,8 @@ public class Vacunaciones {
 	public Map<String, Integer> maximoNumTotalVacunasporComunidad() {
 		return this.vacunaciones.stream()
 				.collect(Collectors.groupingBy(Vacunacion::comunidad, 
-						Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingInt(Vacunacion::numeroTotal)), x -> x.get().numeroTotal())));
+						Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingInt(Vacunacion::numeroTotal)), 
+								x -> x.get().numeroTotal())));
 	}
 		
 	
