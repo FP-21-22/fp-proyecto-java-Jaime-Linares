@@ -8,11 +8,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class EstudioClinicoStream implements EstudioClinico {
 
 	// Atributos
-	private List<PacienteEstudio> pacientesEstudio;
+	protected List<PacienteEstudio> pacientesEstudio;
 	
 	
 	// Constructores
@@ -24,6 +25,11 @@ public class EstudioClinicoStream implements EstudioClinico {
 		// C2: constructor que recibe una lista de objetos del tipo PacienteEstudio como parámetro
 	public EstudioClinicoStream(List<PacienteEstudio> pacientesEstudio) {
 		this.pacientesEstudio = pacientesEstudio;
+	}
+	
+		// C3: constructor que recibe un stream de objetos del tipo PacienteEstudio como parámetro
+	public EstudioClinicoStream(Stream<PacienteEstudio> st) {
+		this.pacientesEstudio = st.collect(Collectors.toList());
 	}
 		
 		
