@@ -29,6 +29,7 @@ public class Vacunaciones {
 	}
 	
 	public List<Vacunacion> vacunacionesEntreFechas(LocalDate inf, LocalDate sup) {
+		// Lanzamos una excepción si la inferior es mas tarde que la fecha superior
 		Checkers.check("La fecha superior no puede ser anterior a la fecha inferior.", inf.isBefore(sup));
 		return this.vacunaciones.stream()
 				.filter(x -> x.fecha().isAfter(inf) && x.fecha().isBefore(sup))
@@ -44,7 +45,7 @@ public class Vacunaciones {
 		return this.vacunaciones.stream()
 				.filter(x -> x.comunidad().equals(comunidad))
 				.max(Comparator.comparing(Vacunacion::numeroTotal))
-				.get()
+				.get()    // Sino hubiera máximo lanza una excepción
 				.fecha();
 	}
 	

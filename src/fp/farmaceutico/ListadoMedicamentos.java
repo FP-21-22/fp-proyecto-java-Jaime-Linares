@@ -38,7 +38,7 @@ public class ListadoMedicamentos {
 		return this.medicamentos.stream()
 				.filter(x -> x.getTipoDeMedicamento().equals(tipoMedicamento))
 				.max(Comparator.comparing(Medicamento::getIndiceSomatico))
-				.orElseThrow()        // sino hay máximo eleva una excepción
+				.orElseThrow()        // Sino hay máximo eleva una excepción
 				.getNombreMedicamento();
 	}
 	
@@ -52,16 +52,14 @@ public class ListadoMedicamentos {
 		// Llamamos a la función auxiliar
 		Map<LocalDate, Long> aux = aparicionesFechaCatalogo();
 		/* Recorremos el Map auxiliar, obtenemos el maximo preguntando por el
-		  valor que toma la clave y despues al par clave-valor tomamos la clave
-		  que es lo que se nos pide en el enunciado  */
-		return aux.entrySet().stream()
-				.max((x, y) -> x.getValue().compareTo(y.getValue()))
-				.get()
-				.getKey();
+		  valor que toma la clave y devolvemos la clave */
+		return aux.keySet().stream()
+				.max((x, y) -> aux.get(x).compareTo(aux.get(y)))
+				.get();    // Sino hay máximo lanza una excepción
 	}
 		/* Función auxiliar: Devuelve un map donde las claves son fechaCatalogo
 		 y los valores el número de veces que aparece tal fechaCatalogo, es decir,
-		 actúa como un contador */
+		 hemos hecho un map que actúa como un contador */
 	private Map<LocalDate, Long> aparicionesFechaCatalogo() {
 		return this.medicamentos.stream()
 				.collect(Collectors.groupingBy(Medicamento::getFechaCatalogo, 
