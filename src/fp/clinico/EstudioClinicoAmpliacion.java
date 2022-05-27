@@ -11,8 +11,8 @@ public interface EstudioClinicoAmpliacion extends EstudioClinico {
 	Map<TipoResidencia,Double> agruparNivelMedioGlucosaMedioPorTipoResidencia();
 	Map<TipoResidencia,PacienteEstudio> agruparNivelMedioGlucosaMaximoPorTipoResidencia();
 	Map<String,List<PacienteEstudio>> agrupaPacientesPorGenero();
-	Map<String,Set<PacienteEstudio>> agrupaPacientesPorPorGeneroEnConjunto();
-	Map<String,SortedSet<PacienteEstudio>> agrupaPacientesPorPorGeneroEnConjuntoOrdenado();
+	Map<String,Set<PacienteEstudio>> agrupaPacientesPorGeneroEnConjunto();
+	Map<String,SortedSet<PacienteEstudio>> agrupaPacientesPorGeneroEnConjuntoOrdenado();
 	Map<String,PacienteEstudio> pacienteEdadMaximaPacientesPorGenero();
 	Map<String,List<Double>> listaEdadesPorGenero();
 	Map<String,Double> edadMaximaPacientesPorGenero();
